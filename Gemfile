@@ -59,3 +59,4 @@ gem 'faalis', github: 'Yellowen/Faalis'
 
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
+gem 'therubyracer'
