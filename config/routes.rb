@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     root 'home#index'
   end
 
-  get 'home/index'
-
-  get 'home/about'
+  default_site do
+    get 'home/index'
+    get 'home/about'
+  end
 
   mount Faalis::Engine => '/'
   Faalis::Routes.define_api_routes do
