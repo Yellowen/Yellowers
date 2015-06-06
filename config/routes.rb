@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
+  sites do
+    #Gear.mount
+    root 'home#index'
+  end
+
   get 'home/index'
 
   get 'home/about'
-
-  sites do
-    root 'home#index'
-  end
 
   mount Faalis::Engine => '/'
   Faalis::Routes.define_api_routes do

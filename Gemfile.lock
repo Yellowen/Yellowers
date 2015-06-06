@@ -51,7 +51,7 @@ GIT
 PATH
   remote: /home/lxsameer/src/Yellowen/site_framework
   specs:
-    site_framework (2.0.0)
+    site_framework (3.0.0)
       orm_adapter
       railties (~> 4)
 
