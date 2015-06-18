@@ -50,6 +50,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem 'database_cleaner'
 end
 
 gem 'slim-rails'
