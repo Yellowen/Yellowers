@@ -4,6 +4,8 @@ class CreateGears < ActiveRecord::Migration
       t.string :name
       t.string :engine
       t.string :url
+      t.string :version
+      t.string :cost
       t.text :description
 
       t.timestamps null: false
