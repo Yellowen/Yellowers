@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604185820) do
+ActiveRecord::Schema.define(version: 20150618101255) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "application_models", force: :cascade do |t|
     t.string   "model"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150604185820) do
     t.datetime "updated_at"
   end
 
-  add_index "faalis_groups", ["role"], name: "index_faalis_groups_on_role", unique: true
+  add_index "faalis_groups", ["role"], name: "index_faalis_groups_on_role", unique: true, using: :btree
 
   create_table "faalis_groups_permissions", force: :cascade do |t|
     t.integer "permission_id"
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150604185820) do
     t.datetime "updated_at"
   end
 
-  add_index "faalis_permissions", ["model"], name: "index_faalis_permissions_on_model"
+  add_index "faalis_permissions", ["model"], name: "index_faalis_permissions_on_model", using: :btree
 
   create_table "faalis_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -68,15 +71,30 @@ ActiveRecord::Schema.define(version: 20150604185820) do
     t.datetime "updated_at"
   end
 
-  add_index "faalis_users", ["email"], name: "index_faalis_users_on_email", unique: true
-  add_index "faalis_users", ["reset_password_token"], name: "index_faalis_users_on_reset_password_token", unique: true
-  add_index "faalis_users", ["unlock_token"], name: "index_faalis_users_on_unlock_token", unique: true
+  add_index "faalis_users", ["email"], name: "index_faalis_users_on_email", unique: true, using: :btree
+  add_index "faalis_users", ["reset_password_token"], name: "index_faalis_users_on_reset_password_token", unique: true, using: :btree
+  add_index "faalis_users", ["unlock_token"], name: "index_faalis_users_on_unlock_token", unique: true, using: :btree
 
   create_table "gears", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
     t.string   "engine"
     t.string   "url"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "namespaces", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "owner_id"
+    t.boolean  "locked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "site_categories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -85,18 +103,23 @@ ActiveRecord::Schema.define(version: 20150604185820) do
     t.string   "name"
     t.integer  "site_id"
     t.integer  "parent_id"
-    t.boolean  "alias",      default: false
+    t.boolean  "alias",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "namespace_id"
   end
 
-  add_index "site_framework_domains", ["name"], name: "index_site_framework_domains_on_name", unique: true
+  add_index "site_framework_domains", ["name"], name: "index_site_framework_domains_on_name", unique: true, using: :btree
 
   create_table "site_framework_sites", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
+    t.boolean  "locked"
+    t.json     "settings"
+    t.integer  "site_category_id"
   end
 
 end
