@@ -3,8 +3,7 @@ SiteFramework::Domain.class_eval do
 
   include Faalis::Concerns::Authorizable
 
-  if Faalis::ORM.active_record?
-    belongs_to :namespace
-    validates_associated :namespace
-  end
+  belongs_to :namespace
+
+  validates_associated :namespace
 end
