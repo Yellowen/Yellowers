@@ -7,4 +7,8 @@ class GearBox < ActiveRecord::Base
   validates_associated :gear
   validates_associated :site
   validates_associated :user
+
+  def mount(mapper)
+    mapper.mount gear.engine.constantize => gear.url
+  end
 end

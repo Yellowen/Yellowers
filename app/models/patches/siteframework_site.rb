@@ -10,4 +10,12 @@ SiteFramework::Site.class_eval do
   validates_associated :owner
 
   has_many :domains
+  has_many :gear_boxes
+
+
+  def before_dispatch(mapper)
+    self.gear_boxes.each do |gear|
+      gear.mount(mapper)
+    end
+  end
 end
