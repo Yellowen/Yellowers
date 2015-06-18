@@ -1,31 +1,22 @@
+require 'seeds/users'
+
 Faalis::Engine.load_seed
+Seeds::Users.load
+Seeds::SiteCategories.load
 
-SiteCategory.create(name: 'Arts and Entertainment')
-SiteCategory.create(name: 'Automotive')
-SiteCategory.create(name: 'Beauty and Fitness')
-SiteCategory.create(name: 'Books and Literature')
-SiteCategory.create(name: 'Business and Industrial Markets')
-SiteCategory.create(name: 'Computers and Electronics')
-SiteCategory.create(name: 'Finance')
-SiteCategory.create(name: 'Food and Drink')
-SiteCategory.create(name: 'Games')
-SiteCategory.create(name: 'Healthcare')
-SiteCategory.create(name: 'Hobbies and Leisure')
-SiteCategory.create(name: 'Home and Garden')
-SiteCategory.create(name: 'Internet and Telecom')
-SiteCategory.create(name: 'Jobs and Education')
-SiteCategory.create(name: 'Law and Government')
-SiteCategory.create(name: 'News')
-SiteCategory.create(name: 'Online Communities')
-SiteCategory.create(name: 'People and Society')
-SiteCategory.create(name: 'Pets and Animals')
-SiteCategory.create(name: 'Real Estate')
-SiteCategory.create(name: 'Reference')
-SiteCategory.create(name: 'Science')
-SiteCategory.create(name: 'Shopping')
-SiteCategory.create(name: 'Sports')
-SiteCategory.create(name: 'Travel')
-SiteCategory.create(name: 'Other')
+namespace = Namespace.create!(name: 'karajlug', owner: user)
 
-domain = SiteFramework::Domain.create!(name: 'karajlug.local')
-SiteFramework::Site.create!(title: 'Karajlug', domains: [domain])
+domain1   = SiteFramework::Domain.create!(name: 'site-karajlug.factorien.com',
+                                          alias: false,
+                                          namespace: namespace)
+
+domain2   = SiteFramework::Domain.create!(name: 'karajlug.local',
+                                          parent: domain1,
+                                          alias: true,
+                                          namespace: namespace)
+
+site = SiteFramework::Site.create!(title: 'Karajlug',
+                                   site_category_id: 1,
+                                   owner: user,
+                                   domains: [domain1,
+                                             domain2]);
