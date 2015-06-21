@@ -9,13 +9,17 @@ Rails.application.routes.draw do
   end
 
   mount Faalis::Engine => '/'
-  Faalis::Routes.define_api_routes do
+  api_routes do
     # Define your API routes here . . .
   end
 
+<<<<<<< HEAD
   namespace Faalis::Engine.dashboard_namespace do
     get 'site/new', to: 'site#new'
     post 'site/new', to: 'site#create'
+=======
+  in_dashboard do
+>>>>>>> c8e230982a3754d27fb6284c90d778025e1ef12f
   end
 
 end

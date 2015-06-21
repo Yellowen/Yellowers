@@ -10,4 +10,15 @@ Faalis::Engine.setup do |config|
 
   # Url prefix for dashboard section. default is '/dashboard'
   # config.dashboard_namespace = :dashboard
+  config.site_title = _("Factorien")
+
+  config.dashboard_modules = {
+    :auth => {
+      :icon => "fa fa-group",
+      :title => _("Authentication"),
+      :sidemenu => true,
+      :model => "Faalis::Permissions::Auth"
+    },
+  }
+
 end
