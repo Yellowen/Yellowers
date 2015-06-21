@@ -14,6 +14,8 @@
 
 class GearBox < ActiveRecord::Base
 
+  include Faalis::Concerns::Authorizable
+
   belongs_to :gear
   belongs_to :site, class_name: 'SiteFramework::Site'
   belongs_to :user, class_name: 'Faalis::User'
