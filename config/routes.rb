@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   end
 
   namespace Faalis::Engine.dashboard_namespace do
-    get 'sss', to: 'home#index'
+    get 'site/new', to: 'site#new'
+    post 'site/new', to: 'site#create'
   end
 
 end
