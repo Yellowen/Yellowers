@@ -8,8 +8,13 @@ Rails.application.routes.draw do
     get 'home/about'
   end
 
-  #mount Faalis::Engine => '/'
-  #Faalis::Routes.define_api_routes do
+  mount Faalis::Engine => '/'
+  Faalis::Routes.define_api_routes do
     # Define your API routes here . . .
-  #end
+  end
+
+  namespace Faalis::Engine.dashboard_namespace do
+    get 'sss', to: 'home#index'
+  end
+
 end
