@@ -9,12 +9,11 @@ Rails.application.routes.draw do
   end
 
   mount Faalis::Engine => '/'
-  Faalis::Routes.define_api_routes do
+  api_routes do
     # Define your API routes here . . .
   end
 
-  namespace Faalis::Engine.dashboard_namespace do
-    get 'sss', to: 'home#index'
+  in_dashboard do
   end
 
 end
