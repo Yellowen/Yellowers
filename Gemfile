@@ -55,7 +55,7 @@ end
 
 gem 'slim-rails'
 gem 'dashstrap', github: 'Yellowen/dashstrap'
-gem 'faalis', github: 'Yellowen/Faalis' #path: '/home/lxsameer/src/Yellowen/Faalis'
+gem 'faalis', path: '/home/lxsameer/src/Yellowen/Faalis' #github: 'Yellowen/Faalis'
 
 
 gem 'less-rails-semantic_ui'
