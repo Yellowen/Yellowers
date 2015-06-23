@@ -13,13 +13,9 @@ Rails.application.routes.draw do
     # Define your API routes here . . .
   end
 
-<<<<<<< HEAD
-  namespace Faalis::Engine.dashboard_namespace do
-    get 'site/new', to: 'site#new'
-    post 'site/new', to: 'site#create'
-=======
   in_dashboard do
->>>>>>> c8e230982a3754d27fb6284c90d778025e1ef12f
+    get 'sites/new', to: "sites#new"
+    post 'sites', to: "sites#create"
   end
 
 end

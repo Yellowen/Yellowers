@@ -1,12 +1,13 @@
 module Dashboard
-  class SitesController
-
+  class SitesController < ApplicationController
+    layout false
     # GET /sites/new
+
     def new
       @gears = Gear.all
       @siteCategories = SiteCategory.all
-      @namespaces = Namespace.where(owner_id: current_user.ir)
-      @domains = SiteFramework.Domain.all
+      @namespaces = Namespace.where(owner_id: current_user)
+      @domains = SiteFramework::Domain.all
     end
 
     # POST /sites
@@ -14,7 +15,7 @@ module Dashboard
     def create
       @site = SiteFramework::Site.create!(title: params[:title],
                                       site_category_id: params[:site_category_id],
-                                      owner_id: current_user.ir)
+                                      owner_id: current_user)
       authorize @site
       @domain = SiteFramework::Domain.create!(name: params[:name],
                                               parent_id: params[:parent_id],
@@ -22,7 +23,7 @@ module Dashboard
                                               site: @site)
       @gear_box = GearBox.create!(create!(site: @site,
                                           gear_id: params[:gear_id]),
-                                  user_id: current_user.id
+                                  user_id: current_user
                                   )
       respond_to do |format|
         if @site.save
