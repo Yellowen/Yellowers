@@ -1,4 +1,5 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < Faalis::ApplicationController
+
   extend Faalis::I18n::Locale
   include SiteFramework::Helpers
 
