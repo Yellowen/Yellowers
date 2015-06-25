@@ -55,11 +55,14 @@ end
 
 gem 'slim-rails'
 gem 'dashstrap', github: 'Yellowen/dashstrap'
-gem 'faalis', path: '/home/lxsameer/src/Yellowen/Faalis' #github: 'Yellowen/Faalis'
+#gem 'faalis', path: '/home/lxsameer/src/Yellowen/Faalis' #github: 'Yellowen/Faalis'
+gem 'faalis', path: '../Faalis' #github: 'Yellowen/Faalis'
 
 
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
 gem 'therubyracer'
-gem 'site_framework', path: '/home/lxsameer/src/Yellowen/site_framework'
+
+gem 'site_framework', path: '../site_framework'
+#gem 'site_framework', path: '/home/yottanami/yellowen/Yellowen/site_framework'
 gem 'puma'

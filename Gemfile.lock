@@ -15,7 +15,7 @@ GIT
       slim-rails
 
 PATH
-  remote: /home/lxsameer/src/Yellowen/Faalis
+  remote: ../Faalis
   specs:
     faalis (1.0.0.alpha4)
       angularjs-rails (~> 1.2.16)
@@ -48,7 +48,7 @@ PATH
       sprockets
 
 PATH
-  remote: /home/lxsameer/src/Yellowen/site_framework
+  remote: ../site_framework
   specs:
     site_framework (3.1.0)
       orm_adapter

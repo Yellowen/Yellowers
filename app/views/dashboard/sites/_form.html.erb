@@ -1,0 +1,57 @@
+<%= form_tag dashboard_sites_path, remote: true do %>
+
+  <div class="form box box-info">
+
+    <div class="box-header">
+      <h2 class="box-title">
+        <span ng-if="!editing" translate>Sites</span>
+        <span ng-if="editing" translate>Edit Sites</span>
+      </h2>
+    </div>
+
+    <div class="box-body">
+      <div class="row">
+        <div class="col-sm-4 form-group ">
+          <label><span translate><%= label_tag :domain %></span> :</label>
+          <h2><%= text_field_tag :domain, "", :class => "form-control input-lg rounded string_field" %></h2>
+        </div>
+        <div class="col-sm-4 form-group pull-left ">
+          <br>          <br>
+          <h2> <label id="namespaceHolder"></label><label>.Factorien.com</label></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4 form-group">
+          <label><span translate><%= label_tag :title %></span> :</label>
+          <%= text_field_tag :title, "", :class => "form-control input-lg rounded string_field" %>
+        </div>
+
+        <div class="col-sm-4 form-group pull-left col-sm-offset-2">
+          <label><span translate><%= label_tag :site_category %></span> :</label>
+          <%= select_tag "people", options_from_collection_for_select(@siteCategories, "id", "name"), :class => "form-control input-lg rounded string_field" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4 form-group">
+          <label><span translate><%= label_tag :gear_box %></span> :</label>
+          <%= select_tag "gear", options_from_collection_for_select(@gears, "id", "name"), :class => "form-control input-lg rounded " %>
+        </div>
+
+        <div class="col-sm-4 form-group pull-left col-sm-offset-2">
+          <%= select_tag "namespace", options_from_collection_for_select(@namespaces, "id", "name"), :class => "form-control input-lg rounded " %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 columns">
+          <button type="submit" class="btn btn-lg btn-success" ><i class="fa fa-check"></i> <span translate>Submit</span></button>
+          <button class="btn btn-lg btn-danger" ><i class="fa fa-times"></i> <span translate>Cancel</span></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>

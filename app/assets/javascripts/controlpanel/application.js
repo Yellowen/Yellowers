@@ -11,6 +11,7 @@
 // about supported directives.
 //
 /// From Faalis -----------------------------
+//= require controlpanel/init
 //= require faalis/angular-manifest
 
 
@@ -24,5 +25,7 @@
 //= require AdminLTE/dashboard
 
 /// Faalis dashboard main application --------
-//= require_tree ./modules
+
 //= require faalis/dashboard/application
+
+//= require controlpanel/modules/site
