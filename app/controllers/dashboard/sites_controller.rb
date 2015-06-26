@@ -13,27 +13,30 @@ module Dashboard
     # POST /sites
     # POST /sites.json
     def create
-      @site = SiteFramework::Site.create!(title: params[:title],
+      @site = SiteFramework::Site.create(title: params[:title],
                                       site_category_id: params[:site_category_id],
                                       owner_id: current_user)
       authorize @site
-      @domain = SiteFramework::Domain.create!(name: params[:name],
+      domain_name = "#{params["domain"]}-#{params["namespace"]}.factoren.com"
+      @domain = SiteFramework::Domain.create(name: domain_name,
                                               parent_id: params[:parent_id],
-                                              namespace_id: namespace_id,
-                                              site: @site)
-      @gear_box = GearBox.create!(create!(site: @site,
-                                          gear_id: params[:gear_id]),
-                                  user_id: current_user
-                                  )
-      respond_to do |format|
-        if @site.save
-          format.html { redirect_to @site, notice: 'Site was successfully created.' }
-          format.json { render :show, status: :created, location: @site }
-        else
-          format.html { render :new }
-          format.json { render json: @site.errors, status: :unprocessable_entity }
-        end
+                                              namespace_id: params[:namespace],
+                                             site: @site)
+
+      @gear_box = GearBox.create(site: @site,
+                                 gear_id: params[:gear_id],
+                                  user_id: current_user.id
+                                 )
+
+          respond_to do |f|
+      if @group.save
+        f.js
+        f.html
+      else
+        f.js { render :errors }
+        f.html
       end
+
     end
 
     def build_resource
