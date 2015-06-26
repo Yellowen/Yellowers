@@ -13,7 +13,7 @@
           <%= text_field_tag :domain, "", :class => "form-control input-lg rounded string_field" %>
         </div>
         <div class="col-sm-2 form-group pull-left ">
-          <% if @namespaces.empty? %>
+          <% if @namespaces.nil? %>
             <%= text_field_tag :namespace, "", :class => "form-control input-lg rounded string_field" %>
           <% else %>
             <%= select_tag "namespace", options_from_collection_for_select(@namespaces, "id", "name"), :class => "form-control input-lg rounded  string_field" %>
