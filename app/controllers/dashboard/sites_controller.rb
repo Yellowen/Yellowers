@@ -55,7 +55,6 @@ module Dashboard
       else
         @errors.merge! @site.errors
       end
-
     end
 
     def create_gear_box
@@ -66,7 +65,7 @@ module Dashboard
       if @gear_box.save
         @gear_box
       else
-        @errors.merge! gear_box.errors
+        @errors.merge! @gear_box.errors
       end
     end
 
