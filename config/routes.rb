@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   end
 
   in_dashboard do
-    get 'sites/new', to: "sites#new"
-    post 'sites', to: "sites#create"
+    resources :sites
+    # get 'sites/new', to: "sites#new"
+    # post 'sites', to: "sites#create"
   end
 
 

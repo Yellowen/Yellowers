@@ -54,7 +54,8 @@ group :development, :test do
 end
 
 gem 'slim-rails'
-gem 'dashstrap', github: 'Yellowen/dashstrap'
+#gem 'dashstrap', github: 'Yellowen/dashstrap'
+gem 'dashstrap', path: '../dashstrap'
 #gem 'faalis', path: '/home/lxsameer/src/Yellowen/Faalis' #github: 'Yellowen/Faalis'
 gem 'faalis', path: '../Faalis' #github: 'Yellowen/Faalis'
 

@@ -13,34 +13,63 @@ module Dashboard
     # POST /sites
     # POST /sites.json
     def create
+      @errors = {}
+      ActiveRecord::Base.transaction do
+        create_site
+        create_domain
+        create_gear_box
+      end
+      authorize @site
+
       respond_to do |f|
-        begin
-          @site = SiteFramework::Site.create(title: params[:title],
-                                             site_category_id: params[:site_category_id],
-                                             owner_id: current_user)
-          authorize @site
-          domain_name = "#{params["domain"]}-#{params["namespace"]}.factoren.com"
-          @domain = SiteFramework::Domain.create(name: domain_name,
-                                                 parent_id: params[:parent_id],
-                                                 namespace_id: params[:namespace],
-                                                 site: @site)
-          @gear_box = GearBox.create(site: @site,
-                                     gear_id: params[:gear_id],
-                                     user_id: current_user.id
-                                     )
+        if @errors.empty?
           f.js
           f.html
-        rescue ActiveRecord::RecordInvalid
+        else
           f.js { render :errors }
           f.html
-          raise ActiveRecord::Rollback
         end
       end
     end
 
-    def build_resource
+    def create_site
+      @site = SiteFramework::Site.new(title: params[:title],
+                                      #{}ite_category_id: params[:site_category_id],
+                                      owner_id: current_user)
+      if @site.save
+        @site
+      else
+        @errors.merge! @site.errors
+      end
+    end
+
+
+    def create_domain
+      domain_name = "#{params["domain"]}-#{params["namespace"]}.factoren.com"
+      @domain = SiteFramework::Domain.new(name: domain_name,
+                                          parent_id: params[:parent_id],
+                                          namespace_id: params[:namespace],
+                                          site: @site)
+      if @domain.save
+        @domain
+      else
+        @errors.merge! @site.errors
+      end
 
     end
+
+    def create_gear_box
+      @gear_box = GearBox.new(site: @site,
+                              gear_id: params[:gear_id],
+                              user_id: current_user.id
+                              )
+      if @gear_box.save
+        @gear_box
+      else
+        @errors.merge! gear_box.errors
+      end
+    end
+
 
     def resource_params
       params.require(:site).permis(:id, :title, :url, :site_category_id, :gear_box)
