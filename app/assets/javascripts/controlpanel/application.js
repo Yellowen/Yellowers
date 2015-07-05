@@ -29,3 +29,4 @@
 //= require faalis/dashboard/application
 
 //= require controlpanel/modules/site
+//= require controlpanel/modules/profile

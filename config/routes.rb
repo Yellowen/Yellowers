@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   in_dashboard do
     get 'sites/new', to: "sites#new"
     post 'sites', to: "sites#create"
+    get 'profile/editpassword', to: "profile#edit_password"
+    post 'profile/editpassword', to: "profile#update_password"
   end
 
 
