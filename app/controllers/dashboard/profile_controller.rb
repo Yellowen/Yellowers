@@ -12,17 +12,18 @@ module Dashboard
       authorize @user
       respond_to do |f|
         if @user.update_with_password(resource_params)
-          f.js
-          f.html
+          f.js { redirect_to new_user_session_path }
+          f.html { redirect_to new_user_session_path }
         else
-          f.js {render @user.errors}
+          @errors = @user.errors
+          f.js {render :errors}
           f.html
         end
       end
     end
 
     def resource_params
-      params.require(:user).permit(:current_password, :password, :password_confirmation)
+      params.require(:user).permit(:password, :current_password, :password_confirmation)
     end
   end
 end

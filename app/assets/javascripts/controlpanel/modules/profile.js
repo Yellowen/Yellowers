@@ -6,5 +6,3 @@ angular.module('Profile', [])
             templateUrl: '/dashboard/profile/editpassword'
         });
   }]);
-
-console.log("3434343");
