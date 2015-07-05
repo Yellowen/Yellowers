@@ -1,0 +1,40 @@
+.row
+  .col-xs-12
+    .box.box-default
+      .box-header.with-border
+        h3.box-title
+          = _(Sites')
+        .box-tools
+          a.btn.btn-success.pull-right.btn-sm href=(faalisify_url(sites_usrl))
+            i.fa.fa-plus
+            = _('Add new site')
+
+      .box-body.no-padding
+        table.table.table-striped
+          tbody
+            tr
+              th
+                |#
+              th
+                = _("Title")
+              th
+                = _('Created at')
+              th
+                = _('Actions')
+
+            - @sites.each do |site|
+              tr
+                td
+                  = site.id
+                td
+                  a href=(faalisify_url(show_target))
+                    = site.email
+                td
+                  = site.created_at
+
+                td
+                  a.red.link.pull-right href=(destroy_target) data-remote="true" data-method="delete"
+                    i.fa.fa-remove
+                  a.warning.link.pull-right href=(faalisify_url(edit_target))
+                    i.fa.fa-edit
+      .box-footer
