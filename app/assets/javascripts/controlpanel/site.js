@@ -6,5 +6,5 @@ angular.module('Sites', [])
       .state('sites-new', {
             url: '/sites/new',
             templateUrl: '/dashboard/sites/new'
-        });
+      });
   }]);

@@ -13,4 +13,5 @@
 
 class Gear < ActiveRecord::Base
   include Faalis::Concerns::Authorizable
+
 end

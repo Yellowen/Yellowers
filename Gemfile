@@ -51,13 +51,19 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'pry-doc'
+  gem 'method_source'
+  gem 'rubocop'
+  gem 'ruby-lint'
 end
 
+# template engins
 gem 'slim-rails'
+gem 'liquid-rails'
+
 gem 'dashstrap', github: 'Yellowen/dashstrap'
 #gem 'faalis', path: '/home/lxsameer/src/Yellowen/Faalis' #github: 'Yellowen/Faalis'
 gem 'faalis', path: '../Faalis' #github: 'Yellowen/Faalis'
-
 
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
