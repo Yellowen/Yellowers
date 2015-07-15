@@ -23,6 +23,9 @@ class GearBox < ActiveRecord::Base
   validates_associated :gear
   validates_associated :site
   validates_associated :user
+  validates(:gear_id, presence: true)
+  validates(:site_id, presence: true)
+  validates(:user_id, presence: true)
 
   def mount(mapper)
     mapper.mount gear.engine.constantize => gear.url

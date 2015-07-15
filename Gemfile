@@ -1,6 +1,5 @@
-source 'https://rails-assets.org'
 source 'https://rubygems.org'
-
+source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~>4.2.1'
@@ -61,7 +60,10 @@ end
 gem 'slim-rails'
 gem 'liquid-rails'
 
-gem 'dashstrap', github: 'Yellowen/dashstrap'
+
+#gem 'dashstrap', github: 'Yellowen/dashstrap'
+gem 'dashstrap', path: '../dashstrap'
+
 #gem 'faalis', path: '/home/lxsameer/src/Yellowen/Faalis' #github: 'Yellowen/Faalis'
 gem 'faalis', path: '../Faalis' #github: 'Yellowen/Faalis'
 
